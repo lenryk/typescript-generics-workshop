@@ -10,7 +10,10 @@ const array = [
   },
 ];
 
-const obj = array.reduce((accum, item) => {
+// reduce returns the type of the initial value .e.g {}
+// we dont want this - so we need to use the reduce generic to tell it what to return
+// we can also pass the record type directly to the accum as the type
+const obj = array.reduce<Record<string,{name: string}>>((accum, item) => {
   accum[item.name] = item;
   return accum;
 }, {});
