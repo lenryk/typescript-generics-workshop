@@ -1,7 +1,8 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const concatenateFirstNameAndLastName = (user: unknown) => {
+// here we add a constraint that only accepts a prop that has our expected object schema
+export const concatenateFirstNameAndLastName = <T extends {firstName: string, lastName: string}>(user: T) => {
   return {
     ...user,
     fullName: `${user.firstName} ${user.lastName}`,
