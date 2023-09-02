@@ -11,7 +11,9 @@ export class Component<TProps> {
   getProps = () => this.props;
 }
 
-const cloneComponent = (component: unknown) => {
+// here we make a generic then define the param of the function as a Component type
+// since Component class is also a generic we can pass the type from the original function to the class
+const cloneComponent = <T>(component: Component<T>) => {
   return new Component(component.getProps());
 };
 
