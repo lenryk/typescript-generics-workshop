@@ -1,6 +1,7 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const createSet = <T>() => {
+// same default syntax as you would expect in a function params
+export const createSet = <T=string>() => {
   return new Set<T>();
 };
 
