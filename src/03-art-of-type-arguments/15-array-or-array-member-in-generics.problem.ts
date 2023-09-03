@@ -1,6 +1,7 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-const makeStatus = <TStatuses extends string[]>(statuses: TStatuses) => {
+// by constraining it to string we can now infer the individual array types
+const makeStatus = <T extends string>(statuses: T[]) => {
   return statuses;
 };
 
