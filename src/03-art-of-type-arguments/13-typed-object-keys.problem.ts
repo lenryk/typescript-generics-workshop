@@ -6,8 +6,10 @@ import { Equal, Expect } from "../helpers/type-utils";
  * to do with the way you specify the generic. Can you get
  * both solutions?
  */
-const typedObjectKeys = (obj: unknown) => {
-  return Object.keys(obj);
+// constrain the generic to only accept objects
+const typedObjectKeys = <T extends object>(obj: T) => {
+  // force the return value to be an array of the keys of T
+  return Object.keys(obj) as Array<keyof T>;
 };
 
 it("Should return the keys of the object", () => {
