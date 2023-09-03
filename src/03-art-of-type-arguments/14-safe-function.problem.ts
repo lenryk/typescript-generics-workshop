@@ -1,14 +1,17 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
+// constrain the generic to make sure it accepts a function with arguments
+// use utility functions to grab the params type for the arguments
+// use utility functions to grab the return type for the function
 const makeSafe =
-  (func: unknown) =>
+  <TFunc extends (...args: any[]) => any>(func: TFunc) =>
   (
-    ...args: unknown
+    ...args: Parameters<TFunc>
   ):
     | {
         type: "success";
-        result: unknown;
+        result: ReturnType<TFunc>;
       }
     | {
         type: "failure";
