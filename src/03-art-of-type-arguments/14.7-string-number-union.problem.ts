@@ -1,6 +1,7 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const inferItemLiteral = <T>(t: T) => {
+// adding this generic constraint now returns the literal type instead of a widened type
+export const inferItemLiteral = <T extends number | string>(t: T) => {
   return {
     output: t,
   };
