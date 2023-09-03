@@ -1,9 +1,17 @@
 import { expect, it, describe } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const getHomePageFeatureFlags = (
-  config: unknown,
-  override: (flags: unknown) => unknown
+// we constrain the generic with the expected object schema
+export const getHomePageFeatureFlags = <T>(
+  config: {
+    rawConfig: {
+      featureFlags: {
+        homePage: T;
+      };
+    };
+  },
+  // since we already know the type of the homepage we can reference that as the param type and return
+  override: (flags: T) => T
 ) => {
   return override(config.rawConfig.featureFlags.homePage);
 };
