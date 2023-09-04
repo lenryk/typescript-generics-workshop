@@ -1,9 +1,11 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
+// Set up a generics constraint so that we can only have an object with strings
 const createClassNamesFactory =
-  (classes: unknown) =>
-  (type: unknown, ...otherClasses: unknown[]) => {
+  <TProps extends Record<keyof TProps, string>>(classes: TProps) =>
+    // constrain the type so we can only pass keys of the TProps object we accepted above
+  (type: keyof TProps, ...otherClasses: unknown[]) => {
     const classList = [classes[type], ...otherClasses];
     return classList.join(" ");
   };
