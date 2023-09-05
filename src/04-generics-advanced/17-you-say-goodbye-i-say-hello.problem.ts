@@ -1,7 +1,11 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-function youSayGoodbyeISayHello(greeting: unknown) {
+
+// check solution for another way
+function youSayGoodbyeISayHello(greeting: "goodbye"): "hello"
+function youSayGoodbyeISayHello(greeting: "hello"): "goodbye"
+function youSayGoodbyeISayHello(greeting: "hello" | "goodbye") {
   return greeting === "goodbye" ? "hello" : "goodbye";
 }
 
