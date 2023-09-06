@@ -5,7 +5,9 @@ export interface Cache<T> {
   get: (key: string) => T | undefined;
   set: (key: string, value: T) => void;
   // You can fix this by only changing the line below!
-  clone: (transform: (elem: unknown) => unknown) => Cache<unknown>;
+  // here we add a new generic to the inner function
+  // we can use this type for the return values
+  clone: <U>(transform: (elem: T) => U) => Cache<U>;
 }
 
 const createCache = <T>(initialCache?: Record<string, T>): Cache<T> => {
