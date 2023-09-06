@@ -1,10 +1,12 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
+// by default they all get passed to the first function
+// we can add them to each inner function to fix
 export const curryFunction =
-  <T, U, V>(t: T) =>
-  (u: U) =>
-  (v: V) => {
+  <T>(t: T) =>
+  <U>(u: U) =>
+  <V>(v: V) => {
     return {
       t,
       u,
