@@ -10,8 +10,11 @@ export function remapPerson<Key extends keyof Person>(
   key: Key,
   value: Person[Key],
 ): Person[Key] {
+  // type narrowing inside a generic
   if (key === "birthdate") {
-    return new Date();
+    // overwrite the return type using as
+    // better to return expected type instead of any
+    return new Date() as Person[Key];
   }
 
   return value;
