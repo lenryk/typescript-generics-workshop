@@ -1,6 +1,9 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-const getValue = <TObj>(obj: TObj, key: keyof TObj) => {
+// we add a 2nd generic slot
+// we constrain it to the keys of TObj
+// we set the key to be TKey
+const getValue = <TObj, TKey extends keyof TObj>(obj: TObj, key: TKey) => {
   return obj[key];
 };
 
