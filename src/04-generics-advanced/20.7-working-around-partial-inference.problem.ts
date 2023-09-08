@@ -1,9 +1,9 @@
 import { Equal, Expect } from "../helpers/type-utils";
 
-export const makeSelectors = <
-  TSource,
-  TSelectors extends Record<string, (source: TSource) => any>,
->(
+// here we convert the first param into an empty function that returns a 2nd function
+export const makeSelectors =
+  <TSource>() =>
+  <TSelectors extends Record<string, (source: TSource) => any>>(
   selectors: TSelectors,
 ) => {
   return selectors;
@@ -27,7 +27,8 @@ interface Source {
  *
  * makeSelectors<Source>()({ ...selectorsGoHere })
  */
-const selectors = makeSelectors<Source>({
+// here we have to add a function call for our first function before we call the second function
+const selectors = makeSelectors<Source>()({
   getFullName: (source) =>
     `${source.firstName} ${source.middleName} ${source.lastName}`,
   getFirstAndLastName: (source) => `${source.firstName} ${source.lastName}`,
