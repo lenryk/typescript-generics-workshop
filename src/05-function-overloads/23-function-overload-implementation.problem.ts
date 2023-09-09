@@ -12,10 +12,12 @@ interface UserPrivileges extends AnonymousPrivileges {
 interface AdminPrivileges extends UserPrivileges {
   sitesCanDelete: string[];
 }
-
+// we need to make sure we have individual function signatures for each return type and input
+// the main function is a collection of all the function overload returns and inputs types
+function getRolePrivileges(role: string): AnonymousPrivileges;
 function getRolePrivileges(role: "admin"): AdminPrivileges;
 function getRolePrivileges(role: "user"): UserPrivileges;
-function getRolePrivileges(role: string): AnonymousPrivileges {
+function getRolePrivileges(role: string): AnonymousPrivileges | AdminPrivileges | UserPrivileges {
   switch (role) {
     case "admin":
       return {
