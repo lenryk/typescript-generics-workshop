@@ -5,7 +5,11 @@ import { Equal, Expect } from "../helpers/type-utils";
  * This time, let's try and solve this one
  * with function overloads too!
  */
-export const youSayGoodbyeISayHello = (greeting: "goodbye" | "hello") => {
+// we need to do all cases or else they will get ignored
+// function overloads make it easier to read
+export function youSayGoodbyeISayHello(greeting: "goodbye"): "hello"
+export function youSayGoodbyeISayHello(greeting: "hello"): "goodbye"
+export function youSayGoodbyeISayHello(greeting: "goodbye" | "hello") {
   return greeting === "goodbye" ? "hello" : "goodbye";
 };
 
