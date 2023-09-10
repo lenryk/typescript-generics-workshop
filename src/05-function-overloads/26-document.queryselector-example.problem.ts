@@ -7,7 +7,9 @@ const spanElement = document.querySelector("span");
  * Your challenge: figure out why divElement2 is NOT
  * of type HTMLDivElement.
  */
-const divElement2 = document.querySelector("div.foo");
+// here we have to manually assign the type to the generic as the function will return the type whatever the generic is
+// by default this is Element or null
+const divElement2 = document.querySelector<HTMLDivElement>("div.foo");
 
 type tests = [
   Expect<Equal<typeof divElement, HTMLDivElement | null>>,
