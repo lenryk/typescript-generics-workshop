@@ -1,7 +1,15 @@
 import { it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-// You'll need to use function overloads to figure this out!
+// split the function into one with the optional data and one without
+// if no initial data is passed then return the undefined
+function useData<T>(params: { fetchData: () => Promise<T> }): {
+  getData: () => T | undefined;
+};
+// if we have initial data then it must return T
+function useData<T>(params: { fetchData: () => Promise<T>; initialData: T }): {
+  getData: () => T;
+};
 function useData<T>(params: { fetchData: () => Promise<T>; initialData?: T }): {
   getData: () => T | undefined;
 } {
