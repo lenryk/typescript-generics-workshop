@@ -1,7 +1,18 @@
 import { expect, it } from "vitest";
 import { Equal, Expect } from "../helpers/type-utils";
 
-const makeInfiniteScroll = (params: unknown) => {
+// create our params to add to the props
+interface MakeInfiniteScrollParams<TRow> {
+  // this has to be a key of something we pass in
+  key: keyof TRow;
+  // optional but we know its always going to be an array
+  initialRows?: TRow[];
+  // the output will always be a promise that is an array of something
+  fetchRows: () => Promise<TRow[]> | TRow[];
+}
+
+// whatever the input type is we pass it out our props generic
+const makeInfiniteScroll = <T>(params: MakeInfiniteScrollParams<T>) => {
   const data = params.initialRows || [];
 
   const scroll = async () => {
